@@ -76,6 +76,8 @@ jobs:
         run: make all -j"$(nproc)"
       - name: Release Package
         run: make build/packages/release.tar.gz
+      - name: Release Checksums
+        run: make build/release/SHA256SUMS
       - name: Create Release
         # https://github.com/softprops/action-gh-release
         # The globs pick up every app in ALL_APPS, so the list needs no
@@ -88,6 +90,7 @@ jobs:
           files: |
             LICENSE
             build/packages/release.tar.gz
+            build/release/SHA256SUMS
             build/release/*-darwin_arm64
             build/release/*-linux_amd64
             build/release/*-linux_arm64
